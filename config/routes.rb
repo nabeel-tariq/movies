@@ -5,4 +5,6 @@ Rails.application.routes.draw do
       resources :movies
     end
   end
+  #match 'home', :to => "static#index"
+  root :to => "static#index"
 end

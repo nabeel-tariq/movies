@@ -22,10 +22,10 @@ export class AppComponent {
       .subscribe((data: any) => {
         this.resetMoviesList();
         data.movies.forEach(movie => {
-         let runtime_obj = new Movie();
-         this.movie = runtime_obj;
-         this.movies.push(this.movie.load_from_api(movie));
-       });
+          let runtime_obj = new Movie();
+          this.movie = runtime_obj;
+          this.movies.push(this.movie.load_from_api(movie));
+        });
       });
   }
 

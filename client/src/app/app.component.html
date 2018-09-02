@@ -2,10 +2,10 @@
   <input [(ngModel)]="movie.name" name="{{movie.name}}" required>
   <input [(ngModel)]="movie.year_released" name="{{movie.year_released}}" required>
   <input [(ngModel)]="movie.rating" name="{{movie.rating}}" required>
-<ng-container *ngIf="movie.id">
-  <button type="button" (click)="updateMovie(movie)">Update</button>
-  <button type="button" (click)="deleteMovie(movie.id)">Delete</button>
-</ng-container>
+  <ng-container *ngIf="movie.id">
+    <button type="button" (click)="updateMovie(movie)">Update</button>
+    <button type="button" (click)="deleteMovie(movie.id)">Delete</button>
+  </ng-container>
 </div>
 
 <div *ngIf="showForm == false">

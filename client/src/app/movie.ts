@@ -12,8 +12,4 @@ export class Movie {
     this.rating = json_response.rating;
     return this;
   }
-
-  send_params_to_api() {
-
-  }
 }
