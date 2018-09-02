@@ -1,0 +1,29 @@
+<div *ngFor="let movie of movies">
+  <input [(ngModel)]="movie.name" name="{{movie.name}}" required>
+  <input [(ngModel)]="movie.year_released" name="{{movie.year_released}}" required>
+  <input [(ngModel)]="movie.rating" name="{{movie.rating}}" required>
+<ng-container *ngIf="movie.id">
+  <button type="button" (click)="updateMovie(movie)">Update</button>
+  <button type="button" (click)="deleteMovie(movie.id)">Delete</button>
+</ng-container>
+</div>
+
+<div *ngIf="showForm == false">
+  <button type="button" (click)="showMovieForm()">Add New Movie</button>
+</div>
+
+<ng-container *ngIf="showForm">
+  New Form
+  <div>
+    <input [(ngModel)]="movie.name" name="{{movie.name}}" placeholder="Name" required>
+  </div>
+  <div>
+    <input [(ngModel)]="movie.year_released" name="{{movie.year_released}}" placeholder="Year Released" required>
+  </div>
+  <div>
+    <input [(ngModel)]="movie.rating" name="{{movie.rating}}" placeholder="Rating" required>
+  </div>
+  <div>
+    <button type="button" (click)="saveMovie(movie)">Save</button>
+  </div>
+</ng-container>

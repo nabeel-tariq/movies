@@ -10,12 +10,10 @@ class Api::V1::MoviesController < ApplicationController
 
   def create
     @movie = Movie.create!(movies_params)
+    @movies = Movie.all
     render json: {
-      id: @movie.id,
-      name: @movie.name,
-      year: @movie.year_released,
-      rating: @movie.rating
-    }
+               movies: @movies
+           }
   end
 
   def show
@@ -29,7 +27,7 @@ class Api::V1::MoviesController < ApplicationController
   
   def destroy
     @movie.destroy
-    @movies = Movie.all
+    @movies = Movie.all.reverse
       render json: {
       movies: @movies
     }
@@ -37,11 +35,9 @@ class Api::V1::MoviesController < ApplicationController
 
   def update
     @movie.update(movies_params)
+    @movies = Movie.all.reverse
     render json: {
-      id: @movie.id,
-      name: @movie.name,
-      year: @movie.year_released,
-      rating: @movie.rating
+      movies: @movies
     }
   end
   
@@ -51,7 +47,7 @@ class Api::V1::MoviesController < ApplicationController
   end
 
   def movies_params
-    params.permit( :name, :year_released, :rating)
+    params.permit( :id, :name, :year_released, :rating)
   end
 
 end
