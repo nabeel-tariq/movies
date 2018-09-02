@@ -1,7 +1,13 @@
 <div *ngFor="let movie of movies">
   <input [(ngModel)]="movie.name" name="{{movie.name}}" required>
   <input [(ngModel)]="movie.year_released" name="{{movie.year_released}}" required>
-  <input [(ngModel)]="movie.rating" name="{{movie.rating}}" required>
+  <select  class='form-control' [(ngModel)]="movie.rating" name="{{movie.rating}}">
+    <option value='1'>1</option>
+    <option value='2'>2</option>
+    <option value='3'>3</option>
+    <option value='4'>4</option>
+    <option value='5'>5</option>
+  </select>
   <ng-container *ngIf="movie.id">
     <button type="button" (click)="updateMovie(movie)">Update</button>
     <button type="button" (click)="deleteMovie(movie.id)">Delete</button>
@@ -21,7 +27,14 @@
     <input [(ngModel)]="movie.year_released" name="{{movie.year_released}}" placeholder="Year Released" required>
   </div>
   <div>
-    <input [(ngModel)]="movie.rating" name="{{movie.rating}}" placeholder="Rating" required>
+    <select  class='form-control' [(ngModel)]="movie.rating" name="{{movie.rating}}">
+      <option value='1'>1</option>
+      <option value='2'>2</option>
+      <option value='3'>3</option>
+      <option value='4'>4</option>
+      <option value='5'>5</option>
+    </select>
+    <!--<input [(ngModel)]="movie.rating" name="{{movie.rating}}" placeholder="Rating" required>-->
   </div>
   <div>
     <button type="button" (click)="saveMovie(movie)">Save</button>
