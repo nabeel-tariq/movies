@@ -11,6 +11,7 @@ export class AppComponent {
   public movie = new Movie();
   public movies: Movie[]=[];
   public showForm: boolean = false;
+  public showMovieListing: boolean = true;
   ngOnInit() {
     this.listMovies();
   }
@@ -60,11 +61,13 @@ export class AppComponent {
 
   showMovieForm() {
     this.showForm = !this.showForm;
+    this.showMovieListing = false;
     this.movie = new Movie();
   }
 
   hideMovieForm() {
     this.showForm = !this.showForm;
+    this.showMovieListing = true;
     this.movie = new Movie();
   }
 

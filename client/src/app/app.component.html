@@ -1,42 +1,45 @@
-<div *ngFor="let movie of movies">
-  <input [(ngModel)]="movie.name" name="{{movie.name}}" required>
-  <input [(ngModel)]="movie.year_released" name="{{movie.year_released}}" required>
-  <select  class='form-control' [(ngModel)]="movie.rating" name="{{movie.rating}}">
-    <option value='1'>1</option>
-    <option value='2'>2</option>
-    <option value='3'>3</option>
-    <option value='4'>4</option>
-    <option value='5'>5</option>
-  </select>
-  <ng-container *ngIf="movie.id">
-    <button type="button" (click)="updateMovie(movie)">Update</button>
-    <button type="button" (click)="deleteMovie(movie.id)">Delete</button>
+<div class="col-sm-12 text-center">
+  <label>Movie Manager using Ruby on Rails/Angular6</label>
+  <ng-container *ngIf="showMovieListing">
+    <div *ngFor="let movie of movies">
+      <input class="col-sm-2 p m-2" [(ngModel)]="movie.name" name="{{movie.name}}" required>
+      <input class="col-sm-2 p m-2" [(ngModel)]="movie.year_released" name="{{movie.year_released}}" required>
+      <select class="col-sm-2 p m-2" [(ngModel)]="movie.rating" name="{{movie.rating}}">
+        <option value='1'>1</option>
+        <option value='2'>2</option>
+        <option value='3'>3</option>
+        <option value='4'>4</option>
+        <option value='5'>5</option>
+      </select>
+      <ng-container *ngIf="movie.id" class="p">
+        <button type="button" class="btn btn-default p m-2" (click)="updateMovie(movie)">Update</button>
+        <button type="button" class="btn btn-danger p m-2" (click)="deleteMovie(movie.id)">Delete</button>
+      </ng-container>
+    </div>
+    <button type="button" (click)="showMovieForm()" class="btn btn-danger">Add New Movie</button>
   </ng-container>
-</div>
 
-<div *ngIf="showForm == false">
-  <button type="button" (click)="showMovieForm()">Add New Movie</button>
-</div>
+  <ng-container *ngIf="showForm">
+    Add New Film
+    <div>
+      <input class="col-sm-2 p m-2" [(ngModel)]="movie.name" name="{{movie.name}}" placeholder="Name" required>
+    </div>
+    <div>
+      <input class="col-sm-2 p m-2" [(ngModel)]="movie.year_released" name="{{movie.year_released}}" placeholder="Year Released" required>
+    </div>
+    <div>
+      <select class="col-sm-2 p m-2" [(ngModel)]="movie.rating" name="{{movie.rating}}">
+        <option value='1'>1</option>
+        <option value='2'>2</option>
+        <option value='3'>3</option>
+        <option value='4'>4</option>
+        <option value='5'>5</option>
+      </select>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary p m-2" (click)="saveMovie(movie)">Save</button>
+      <button type="button" class="btn btn-default" (click)="hideMovieForm()">Cancel</button>
+    </div>
+  </ng-container>
 
-<ng-container *ngIf="showForm">
-  New Form
-  <div>
-    <input [(ngModel)]="movie.name" name="{{movie.name}}" placeholder="Name" required>
-  </div>
-  <div>
-    <input [(ngModel)]="movie.year_released" name="{{movie.year_released}}" placeholder="Year Released" required>
-  </div>
-  <div>
-    <select  class='form-control' [(ngModel)]="movie.rating" name="{{movie.rating}}">
-      <option value='1'>1</option>
-      <option value='2'>2</option>
-      <option value='3'>3</option>
-      <option value='4'>4</option>
-      <option value='5'>5</option>
-    </select>
-    <!--<input [(ngModel)]="movie.rating" name="{{movie.rating}}" placeholder="Rating" required>-->
-  </div>
-  <div>
-    <button type="button" (click)="saveMovie(movie)">Save</button>
-  </div>
-</ng-container>
+</div>
