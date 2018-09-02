@@ -19,13 +19,13 @@ export class AppComponent {
     this
       .movieService
       .getMovies()
-      .subscribe((obj: Movie[]) => {
+      .subscribe((data: any) => {
         this.resetMoviesList();
-        obj.movies.forEach(movie => {
-          let runtime_obj = new Movie();
-          this.movie = runtime_obj;
-          this.movies.push(this.movie.load_from_api(movie));
-        });
+        data.movies.forEach(movie => {
+         let runtime_obj = new Movie();
+         this.movie = runtime_obj;
+         this.movies.push(this.movie.load_from_api(movie));
+       });
       });
   }
 
@@ -33,7 +33,7 @@ export class AppComponent {
     this
       .movieService
       .createMovie(movie)
-      .subscribe((data) => {
+      .subscribe((data: any) => {
         this.resetMoviesList();
         data.movies.forEach(movie => {
           let runtime_obj = new Movie();
@@ -48,7 +48,7 @@ export class AppComponent {
     this
       .movieService
       .updateMovie(movie)
-      .subscribe((data) => {
+      .subscribe((data: any) => {
         this.resetMoviesList();
         data.movies.forEach(movie => {
           let runtime_obj = new Movie();
@@ -76,7 +76,7 @@ export class AppComponent {
     this
       .movieService
       .deleteMovie(id)
-      .subscribe((data) => {
+      .subscribe((data: any) => {
         this.resetMoviesList();
         data.movies.forEach(movie => {
           let runtime_obj = new Movie();
@@ -90,7 +90,7 @@ export class AppComponent {
     this
       .movieService
       .getMovie(id)
-      .subscribe((data) => {
+      .subscribe((data: any) => {
         this.movie = this.movie.load_from_api(data);
       });
   }
