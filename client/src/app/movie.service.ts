@@ -23,12 +23,6 @@ export class MovieService {
   }
 
   createMovie(movie) {
-    //return this
-    //  .http
-    //  .post(this.url+'/movies?'+movie);
-    //
-
-
     return this.http.post(this.url+'/movies/', {
       "name": movie.name,
       "year_released": movie.year_released,
@@ -37,25 +31,11 @@ export class MovieService {
   }
 
   updateMovie(movie) {
-    //return this
-    //  .http
-    //  .put(this.url+'/movies/'+movie.id+'&name='+movie.name+'&year_released='+movie.year_released+'&rating='+movie.rating);
-    //
-
     return this.http.put(this.url+'/movies/'+movie.id, {
         "name": movie.name,
         "year_released": movie.year_released,
         "rating": movie.rating
       });
-    //  .subscribe(
-    //    data => {
-    //    console.log("PUT Request is successful ", data);
-    //  },
-    //    error => {
-    //    console.log("Rrror", error);
-    //  }
-    //);
-
   }
 
   deleteMovie(id) {
