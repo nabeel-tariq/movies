@@ -11,6 +11,7 @@ export class AppComponent {
   public movie = new Movie();
   public movies: Movie[]=[];
   public showForm: boolean = false;
+  public show_error: boolean = false;
   public showMovieListing: boolean = true;
   ngOnInit() {
     this.listMovies();
@@ -31,18 +32,30 @@ export class AppComponent {
   }
 
   saveMovie(movie) {
-    this
-      .movieService
-      .createMovie(movie)
-      .subscribe((data: any) => {
-        this.resetMoviesList();
-        data.movies.forEach(movie => {
-          let runtime_obj = new Movie();
-          this.movie = runtime_obj;
-          this.movies.push(this.movie.load_from_api(movie));
+    this.show_error = false;
+    if(this.validMovie(movie)){
+      this
+        .movieService
+        .createMovie(movie)
+        .subscribe((data: any) => {
+          this.resetMoviesList();
+          data.movies.forEach(movie => {
+            let runtime_obj = new Movie();
+            this.movie = runtime_obj;
+            this.movies.push(this.movie.load_from_api(movie));
+          });
         });
-      });
-    this.hideMovieForm();
+      this.hideMovieForm();
+    } else {
+      this.show_error = true;
+    }
+  }
+
+  validMovie(movie){
+    if(movie.name.length > 0 && movie.year_released.length > 0 && movie.rating > 0){
+      return true;
+    }
+    return false;
   }
 
   updateMovie(movie) {
@@ -68,6 +81,7 @@ export class AppComponent {
   hideMovieForm() {
     this.showForm = !this.showForm;
     this.showMovieListing = true;
+    this.show_error = false;
     this.movie = new Movie();
   }
 
