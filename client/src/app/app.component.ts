@@ -52,7 +52,7 @@ export class AppComponent {
   }
 
   validMovie(movie){
-    if(movie.name.length > 0 && movie.year_released.length > 0 && movie.rating > 0){
+    if(movie.name.length > 0 && movie.year_released > 0 && movie.rating > 0){
       return true;
     }
     return false;
