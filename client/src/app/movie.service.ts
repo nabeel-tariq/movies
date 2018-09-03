@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MovieService {
 
-  url = 'https://safe-taiga-53298.herokuapp.com/api/v1';
-  //url = 'http://localhost:3000/api/v1';
+  //url = 'https://safe-taiga-53298.herokuapp.com/api/v1';
+  url = 'http://localhost:3000/api/v1';
   constructor(private http: HttpClient) { }
 
   getMovies() {

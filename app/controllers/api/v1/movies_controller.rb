@@ -2,7 +2,7 @@ class Api::V1::MoviesController < ApplicationController
   before_action :set_movie, only: [ :show, :destroy, :update]
   
   def index
-    @movies = Movie.all
+    @movies = Movie.all.order(:name)
       render json: {
       movies: @movies
     }
@@ -10,7 +10,7 @@ class Api::V1::MoviesController < ApplicationController
 
   def create
     @movie = Movie.create!(movies_params)
-    @movies = Movie.all
+    @movies = Movie.all.order(:name)
     render json: {
                movies: @movies
            }
@@ -27,18 +27,23 @@ class Api::V1::MoviesController < ApplicationController
   
   def destroy
     @movie.destroy
-    @movies = Movie.all.reverse
+    @movies = Movie.all.order(:name)
       render json: {
       movies: @movies
     }
   end
 
   def update
+    # @movie.update(movies_params)
+    # @movies = Movie.all.order(:name)
+    # render json: {
+    #   movies: @movies
+    # }
     @movie.update(movies_params)
-    @movies = Movie.all.reverse
+    @movies = Movie.all.order(:name)
     render json: {
-      movies: @movies
-    }
+               movies: @movies
+           }
   end
   
   private

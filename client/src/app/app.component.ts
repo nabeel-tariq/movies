@@ -64,6 +64,7 @@ export class AppComponent {
       .updateMovie(movie)
       .subscribe((data: any) => {
         this.resetMoviesList();
+        //this.movies.filter(e => e.id == data.movie.id)[0] = this.movie.load_from_api(data.movie);
         data.movies.forEach(movie => {
           let runtime_obj = new Movie();
           this.movie = runtime_obj;
@@ -90,17 +91,20 @@ export class AppComponent {
   }
 
   deleteMovie(id) {
-    this
-      .movieService
-      .deleteMovie(id)
-      .subscribe((data: any) => {
-        this.resetMoviesList();
-        data.movies.forEach(movie => {
-          let runtime_obj = new Movie();
-          this.movie = runtime_obj;
-          this.movies.push(this.movie.load_from_api(movie));
+    if(window.confirm('Are sure you want to delete this item ?')){
+      this
+        .movieService
+        .deleteMovie(id)
+        .subscribe((data: any) => {
+          this.resetMoviesList();
+          data.movies.forEach(movie => {
+            let runtime_obj = new Movie();
+            this.movie = runtime_obj;
+            this.movies.push(this.movie.load_from_api(movie));
+          });
         });
-      });
+    }
+
   }
 
   getMovie(id) {
