@@ -3,10 +3,10 @@
   <ng-container *ngIf="showForm">
     Add New Film
     <div>
-      <input class="col-sm-2 p m-2" [(ngModel)]="movie.name" name="{{movie.name}}" placeholder="Name" required>
+      <input class="col-sm-2 p m-2" [(ngModel)]="movie.name" name="{{movie.name}}" placeholder="Name">
     </div>
     <div>
-      <input class="col-sm-2 p m-2" [(ngModel)]="movie.year_released" name="{{movie.year_released}}" placeholder="Year Released" required>
+      <input class="col-sm-2 p m-2" [(ngModel)]="movie.year_released" name="{{movie.year_released}}" placeholder="Year Released" type="number" step="1">
     </div>
     <div>
       <select class="col-sm-2 p m-2" [(ngModel)]="movie.rating" name="{{movie.rating}}">
@@ -44,8 +44,8 @@
 
       <ng-container  *ngFor="let movie of movies">
     <tr>
-      <td><input [(ngModel)]="movie.name" name="{{movie.name}}" required></td>
-      <td><input [(ngModel)]="movie.year_released" name="{{movie.year_released}}" required></td>
+      <td><input type="text" [(ngModel)]="movie.name" name="{{movie.name}}"></td>
+      <td><input [(ngModel)]="movie.year_released" name="{{movie.year_released}}" type="number" step="1"></td>
       <td><select [(ngModel)]="movie.rating" name="{{movie.rating}}">
         <option value='1'>1</option>
         <option value='2'>2</option>
